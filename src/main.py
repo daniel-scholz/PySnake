@@ -51,7 +51,7 @@ def main():
     pygame.init()
     last = pygame.K_RETURN
     food = pickLocation()
-    s = snake.Snake()
+    s = snake.Snake(scl=scl, DISPLAY=DISPLAY, screen_width=width, screen_height=height)
     # gameloop
     while True:
         s.update()
