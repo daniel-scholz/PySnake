@@ -33,14 +33,14 @@ def opposite(k1, k2):
         return True
 
 
-def pickLocation():
+def pick_ocation():
     food_p = [randint(0, width / scl - 1), randint(0, height / scl - 1)]
     food_p[0] *= scl
     food_p[1] *= scl
     return food_p
 
 
-def endGame(s):
+def end_game(s):
     textBox.show()
     db_connector.update_db(s.total, textBox.name)
     pygame.quit()
@@ -50,8 +50,8 @@ def endGame(s):
 def main():
     pygame.init()
     last = pygame.K_RETURN
-    food = pickLocation()
-    s = snake.Snake()
+    food = pick_ocation()
+    s = snake.Snake(scl=scl, screen_width=width, screen_height=height, DISPLAY=DISPLAY)
     # gameloop
     while True:
         s.update()
@@ -59,35 +59,37 @@ def main():
 
         pygame.draw.rect(DISPLAY, pink, Rect(food[0], food[1], s.width, s.height))
         if s.eat(food):
-            food = pickLocation()
+            food = pick_ocation()
         for t in s.tail:
             if s.eat(t):
                 print("you lost")
-                endGame(s)
+                end_game(s)
 
         # event handling
         for event in pygame.event.get():
+
             if event.type == QUIT:
                 if not (s.vx == 0 and s.vy == 0):
-                    endGame(s)
+                    end_game(s)
                 pygame.quit()
                 sys.exit()
 
             # movement
             if event.type == KEYDOWN:
+                # print("true, speed: %d, %d, pos: %d %d " % (s.vx, s.vy, s.px, s.py))
                 if not opposite(last, event.key):
                     if event.key == pygame.K_LEFT:
                         last = pygame.K_LEFT
-                        s.setDir(-1, 0)
+                        s.set_dir(-1, 0)
                     elif event.key == pygame.K_RIGHT:
                         last = pygame.K_RIGHT
-                        s.setDir(1, 0)
+                        s.set_dir(1, 0)
                     elif event.key == pygame.K_UP:
                         last = pygame.K_UP
-                        s.setDir(0, -1)
+                        s.set_dir(0, -1)
                     elif event.key == pygame.K_DOWN:
                         last = pygame.K_DOWN
-                        s.setDir(0, 1)
+                        s.set_dir(0, 1)
         pygame.display.update()
         time.sleep(1 / (6 + s.total))
 

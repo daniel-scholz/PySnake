@@ -1,17 +1,19 @@
+import math
 from random import randint
 
 import pygame
 
-from src import main
-
-import math
-
 
 class Snake:
-    def __init__(self):
+    def __init__(self, scl, screen_width, screen_height, DISPLAY):
+        self.screen_height = screen_height
+        self.scl = scl
+        self.screen_width = screen_width
+        self.DISPLAY = DISPLAY
+
         self.px = 0
         self.py = 0
-        self.vx = 0
+        self.vx = 1
         self.vy = 0
         self.width = self.height = 25
         self.total = 0
@@ -27,42 +29,42 @@ class Snake:
         else:
             self.tail.append([self.px, self.py])
             self.tail_colour.append(randint(0, 255))
-        self.px += self.vx * main.scl
-        self.py += self.vy * main.scl
-        if self.px >= main.width:
+        self.px += self.vx * self.scl
+        self.py += self.vy * self.scl
+        if self.px >= self.screen_width:
             self.px = 0
         # left border collison handling
         if self.px < 0:
-            self.px = main.width - self.width
+            self.px = self.screen_width - self.width
 
         # top border collison handling
-        if self.py >= main.height:
+        if self.py >= self.screen_height:
             self.py = 0
 
         # bottom border collison handling
         if self.py < 0:
-            self.py = main.height - self.height
+            self.py = self.screen_height - self.height
 
     def show(self):
         # wipe screen
-        main.DISPLAY.fill((51, 51, 51))
-        pygame.draw.rect(main.DISPLAY, (255, 255, 255),
+        self.DISPLAY.fill((51, 51, 51))
+        pygame.draw.rect(self.DISPLAY, (255, 255, 255),
                          pygame.Rect(self.px, self.py, self.height, self.width))
 
         c1 = (randint(0, 255), randint(0, 255), randint(0, 255))
         c2 = (randint(0, 255), randint(0, 255), randint(0, 255))
         # uncomment for colourful blinking snake
         for i in range(len(self.tail)):
-            # pygame.draw.rect(Main.DISPLAY, (0, self.tail_colour[i], 0),
+            # pygame.draw.rect(self.DISPLAY, (0, self.tail_colour[i], 0),
             # pygame.Rect(self.tail[i][0], self.tail[i][1], self.height, self.width))
             if i % 2 == 0:
-                pygame.draw.rect(main.DISPLAY, c1,
+                pygame.draw.rect(self.DISPLAY, c1,
                                  pygame.Rect(self.tail[i][0], self.tail[i][1], self.height, self.width))
             else:
-                pygame.draw.rect(main.DISPLAY, c2,
+                pygame.draw.rect(self.DISPLAY, c2,
                                  pygame.Rect(self.tail[i][0], self.tail[i][1], self.height, self.width))
 
-    def setDir(self, vx, vy):
+    def set_dir(self, vx, vy):
         self.vx = vx
         self.vy = vy
 
