@@ -65,7 +65,7 @@ class Snake:
                 pygame.draw.rect(self.DISPLAY, c2,
                                  pygame.Rect(self.tail[i][0], self.tail[i][1], self.height, self.width))
 
-    def setDir(self, vx, vy):
+    def set_dir(self, vx, vy):
         self.vx = vx
         self.vy = vy
 
