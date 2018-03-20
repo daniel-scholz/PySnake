@@ -73,7 +73,7 @@ class Snake:
         d = math.sqrt((food[0] - self.px) ** 2 + (food[1] - self.py) ** 2)
         if d <= 1:
             self.total += 1
-            print("%d FPS" % (self.total + 6))
+            print("Score: %d" % (self.total))
             return True
         else:
             return False

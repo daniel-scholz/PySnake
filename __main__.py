@@ -5,8 +5,8 @@ from random import randint
 import pygame
 from pygame.locals import *
 
-import my_text_input
 import db_connector
+import my_text_input
 import snake
 
 scl = 25
