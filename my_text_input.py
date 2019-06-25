@@ -14,8 +14,8 @@ class MyTextBox:
         self.e.bind('<Return>', self.get_name)
         self.e.pack()
 
-        quit_button = Button(text="Quit", command=self.get_name)
-        quit_button.pack()
+        quitButton = Button(text="Quit", command=self.get_name)
+        quitButton.pack()
 
     def show(self):
         self.root.mainloop()

@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("../games.sqlite")
+conn = sqlite3.connect('games.sqlite')
 cursor = conn.cursor()
 
 

@@ -5,11 +5,12 @@ import pygame
 
 
 class Snake:
-    def __init__(self, scl, screen_width, screen_height, DISPLAY):
+    def __init__(self, scl, DISPLAY, screen_width, screen_height):
+
         self.screen_height = screen_height
-        self.scl = scl
         self.screen_width = screen_width
         self.DISPLAY = DISPLAY
+        self.scl = scl
 
         self.px = 0
         self.py = 0
@@ -72,7 +73,7 @@ class Snake:
         d = math.sqrt((food[0] - self.px) ** 2 + (food[1] - self.py) ** 2)
         if d <= 1:
             self.total += 1
-            print("%d FPS" % (self.total + 6))
+            print("Score: %d" % (self.total))
             return True
         else:
             return False

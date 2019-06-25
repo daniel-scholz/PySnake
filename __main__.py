@@ -5,7 +5,9 @@ from random import randint
 import pygame
 from pygame.locals import *
 
-from src import db_connector, snake, my_text_input
+import db_connector
+import my_text_input
+import snake
 
 scl = 25
 width = height = 500
@@ -33,7 +35,7 @@ def opposite(k1, k2):
         return True
 
 
-def pick_ocation():
+def pick_location():
     food_p = [randint(0, width / scl - 1), randint(0, height / scl - 1)]
     food_p[0] *= scl
     food_p[1] *= scl
@@ -50,8 +52,8 @@ def end_game(s):
 def main():
     pygame.init()
     last = pygame.K_RETURN
-    food = pick_ocation()
-    s = snake.Snake(scl=scl, screen_width=width, screen_height=height, DISPLAY=DISPLAY)
+    food = pick_location()
+    s = snake.Snake(scl=scl, DISPLAY=DISPLAY, screen_width=width, screen_height=height)
     # gameloop
     while True:
         s.update()
@@ -59,7 +61,7 @@ def main():
 
         pygame.draw.rect(DISPLAY, pink, Rect(food[0], food[1], s.width, s.height))
         if s.eat(food):
-            food = pick_ocation()
+            food = pick_location()
         for t in s.tail:
             if s.eat(t):
                 print("you lost")
