@@ -14,7 +14,7 @@ class Snake:
 
         self.px = 0
         self.py = 0
-        self.vx = 0
+        self.vx = 1
         self.vy = 0
         self.width = self.height = 25
         self.total = 0

@@ -72,6 +72,7 @@ def main():
 
         # event handling
         for event in pygame.event.get():
+
             if event.type == QUIT:
                 if not (s.vx == 0 and s.vy == 0):
                     end_game(s)
@@ -80,6 +81,7 @@ def main():
 
             # movement
             if event.type == KEYDOWN:
+                # print("true, speed: %d, %d, pos: %d %d " % (s.vx, s.vy, s.px, s.py))
                 if not opposite(last, event.key):
                     if event.key == pygame.K_LEFT:
                         last = pygame.K_LEFT
