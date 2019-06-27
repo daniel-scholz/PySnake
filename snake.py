@@ -5,12 +5,12 @@ import pygame
 
 
 class Snake:
-    def __init__(self, scl, DISPLAY, screen_width, screen_height):
+    def __init__(self, scale, DISPLAY, screen_width, screen_height):
 
         self.screen_height = screen_height
         self.screen_width = screen_width
         self.DISPLAY = DISPLAY
-        self.scl = scl
+        self.scl = scale
 
         self.px = 0
         self.py = 0

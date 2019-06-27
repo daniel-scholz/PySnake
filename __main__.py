@@ -28,6 +28,7 @@ RUNNING = 1
 
 
 def opposite(k1, k2):
+    # if (k1 - k2 > 1 and k1 != K_RIGHT) or (k1 - k2 > 1 and k2 != K_RIGHT):
     if (k1 == K_DOWN and k2 == K_UP) or \
             (k1 == K_UP and k2 == K_DOWN) or \
             (k1 == K_LEFT and k2 == K_RIGHT) or (
@@ -43,8 +44,8 @@ def pick_location():
 
 
 def end_game(s):
-    textBox.show()
-    db_connector.update_db(s.total, textBox.name)
+    # textBox.show()
+    #db_connector.update_db(s.total, textBox.name)
     pygame.quit()
     sys.exit()
 
@@ -53,13 +54,15 @@ def main():
     pygame.init()
     last = pygame.K_RETURN
     food = pick_location()
-    s = snake.Snake(scl=scl, DISPLAY=DISPLAY, screen_width=width, screen_height=height)
+    s = snake.Snake(scale=scl, DISPLAY=DISPLAY,
+                    screen_width=width, screen_height=height)
     # gameloop
     while True:
         s.update()
         s.show()
 
-        pygame.draw.rect(DISPLAY, pink, Rect(food[0], food[1], s.width, s.height))
+        pygame.draw.rect(DISPLAY, pink, Rect(
+            food[0], food[1], s.width, s.height))
         if s.eat(food):
             food = pick_location()
         for t in s.tail:
